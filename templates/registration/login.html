@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends 'base.html'%}
+{% load static %}
+{% block content %} 
+<html>
+{% csrf_token%}
+<head>
+</head>
+<body>
+    <div>
+        <h3 class="panel-title">Login de usuario</h3>
+    </div>
+    <div>    
+        <form role="form" method="post" id='form_login'>
+        {% csrf_token %}
+            <div>
+                <span><i></i></span>
+                <input type="text" name="username" placeholder="Usuario">
+            </div>
+            <br>
+            <div>
+                <input type="password" name="password" placeholder="Contraseña">
+            </div>
+            <br> 
+            <div>¿Olvido su contraseña? Cambiela 
+                <a href="#">aquí.</a>  
+            </div>
+            <br>
+            <div>
+                <button type="submit" name="login"/>Ingresar</button> 
+            </div>
+            <br>
+            <div >¿Quiere 
+                <a href="/registrar/">Registrarse?</a>
+            </div>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="{{ message.tags }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
+
+{% endblock %} 

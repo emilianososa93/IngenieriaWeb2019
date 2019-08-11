@@ -1,0 +1,19 @@
+{% extends 'base.html'%}
+{% block content %} 
+<head>
+
+</head>
+<body>
+	<div> 
+		<h1>BIENVENIDO</h1>
+		<li>
+            <a href="">{{request.user.username}}</a>
+        </li>
+        <li>
+            <a href="">{{request.user.nombre}}</a>
+        </li>
+	</div>
+	<a href="/portada">Volver al login </a>
+</body>	
+
+{% endblock %} 

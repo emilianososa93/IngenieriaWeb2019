@@ -1,0 +1,53 @@
+{% load staticfiles %}
+
+<html>
+<head>
+    <title>Alquilalo YA</title>
+    <meta charset="UTF-8">
+</head>
+<body id="page-top" class="index">
+            <div class="collapse navbar-collapse" >
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/nosotros/">Quienes somos</a>
+                    </li>
+                    <li>
+                        <a href="#">Secciones</a>
+                    </li>
+                    <li>
+                        <a href="#">Publicar</a>
+                    </li>                      
+                </ul>
+                <ul class="nav navbar-nav navbar-right">  
+                    {% if request.user.is_superuser%}  
+                        <li>
+                            <a href="/admin/">Administrador</a>
+                        </li>
+                    {% endif %}
+                    
+                    {% if request.user.is_authenticated %}
+                        <li>
+                            <a href="">{{request.user.username}}</a>
+                        </li>
+                        <li>
+                            <a href="/logout/">Salir</a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="/login/">Ingresar</a>
+                        </li>
+                        <li>
+                            <a href="/registrar/">Registrarse</a>
+                        </li>
+
+                    {% endif %}
+                </ul>
+            </div> 
+        <div class="container">
+        
+        {% block content %}
+        
+        {% endblock %}
+
+</body>
+</html>

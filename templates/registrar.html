@@ -1,0 +1,52 @@
+{% extends 'base.html'%}
+{% block content %} 
+{% block body%} 
+<div class="container">
+    <h1>Regitro de usuario</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div>      
+	      <label>Usuario</label>
+	      {{form.usuario}}
+	    </div>
+	    <br>
+	    <div>      
+	      <label>Nombre</label>
+	      {{form.nombre}}
+	    </div>
+	    <br>
+	    <div>      
+	      <label>Apellido</label>
+	      {{form.apellido}}
+	    </div>
+	    <br>
+	    <div>      
+	      <label>Correo</label>
+	      {{form.email}}
+	    </div>
+	    <br>
+	    <div>      
+	      <label>Contraseña</label>
+	      {{form.contraseña}}
+	    </div>
+	    <br>
+	    <div>      
+	      <label>Confirmar contraseña</label>
+	      {{form.confirmarcontraseña}}
+	    </div>
+	    <br>
+	    <div>
+		{% if messages %}
+		    <ul class="messages">
+		      {% for message in messages %}
+		        <li class="{{ message.tags }}">{{ message }}</li>
+		      {% endfor %}
+		    </ul>
+		{% endif %}
+		</div>
+        <button type="submit">Registrarse</button>
+    </form>
+</div>
+
+{% endblock%} 
+{% endblock%} 
