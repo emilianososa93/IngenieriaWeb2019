@@ -1,51 +1,57 @@
 {% extends 'base.html'%}
+{% load static %}
+{%load staticfiles%}
 {% block content %} 
 {% block body%} 
-<div class="container">
-    <h1>Regitro de usuario</h1>
-    <form method="post">
-        {% csrf_token %}
-        <div>      
-	      <label>Usuario</label>
-	      {{form.usuario}}
-	    </div>
-	    <br>
-	    <div>      
-	      <label>Nombre</label>
-	      {{form.nombre}}
-	    </div>
-	    <br>
-	    <div>      
-	      <label>Apellido</label>
-	      {{form.apellido}}
-	    </div>
-	    <br>
-	    <div>      
-	      <label>Correo</label>
-	      {{form.email}}
-	    </div>
-	    <br>
-	    <div>      
-	      <label>Contraseña</label>
-	      {{form.contraseña}}
-	    </div>
-	    <br>
-	    <div>      
-	      <label>Confirmar contraseña</label>
-	      {{form.confirmarcontraseña}}
-	    </div>
-	    <br>
-	    <div>
-		{% if messages %}
-		    <ul class="messages">
-		      {% for message in messages %}
-		        <li class="{{ message.tags }}">{{ message }}</li>
-		      {% endfor %}
-		    </ul>
-		{% endif %}
+<head>
+    <title>Registro</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'static/css/register.css' %}">
+</head>
+<div class="modal-dialog text-center">
+        <div class="col-sm-8 main-section">
+            <div class="modal-content">
+                <div class=" col-12 user-img">
+                    <img src="{% static 'static/img/user.png' %}" />
+                </div>                
+			    <h3>Regitro de usuario</h3>
+			    <form method="post">
+			        {% csrf_token %}
+			        <div class="form-group" id="user-group">      
+				      {{form.usuario}}
+				    </div>
+				    <div class="form-group" id="user-group">      
+				      {{form.nombre}}
+				    </div>
+				    <div class="form-group" id="user-group">    
+				      {{form.apellido}}
+				    </div>
+				    <div class="form-group" id="correo-group">  
+				      {{form.email}}
+				    </div>
+				    <div class="form-group" id="contrasena-group">    
+				      {{form.contraseña}}
+				    </div>
+				    <div class="form-group" id="contrasena-group">      
+				      {{form.confirmarcontraseña}}
+				    </div>
+				    <div>
+					{% if messages %}
+					    <div class="alert alert-danger" role="alert">
+					      {% for message in messages %}
+					        <strong class="{{ message.tags }} alert_error">{{ message }}</strong>
+					      {% endfor %}
+					    </div>
+					{% endif %}
+					</div>
+			        <button type="submit" class="btn btn-primary" name="login"><i class="fas fa-sign-in-alt"></i>  Registrarse</button> 
+			    </form>  
+			</div>
 		</div>
-        <button type="submit">Registrarse</button>
-    </form>
+	</div>
 </div>
 
 {% endblock%} 

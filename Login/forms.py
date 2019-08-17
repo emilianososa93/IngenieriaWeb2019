@@ -4,13 +4,10 @@ from django.forms import ModelForm
 
 
 class RegisterForm(forms.Form):
-    usuario = forms.CharField(max_length=20, label='Usuario')
-    nombre = forms.CharField(max_length=30, label='Nombre')
-    apellido = forms.CharField(max_length=20, label='Apellido')
-    email = forms.EmailField(max_length=50,label='Email')
-    contraseña = forms.CharField(label='Contraseña',widget=forms.PasswordInput(attrs={'class' : 'validate'}))
-    confirmarcontraseña = forms.password=forms.CharField(label='Repetir contraseña',widget=forms.PasswordInput(attrs={'class' : 'validate'}))
+    usuario = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'class' : 'validate form-control','placeholder': ' Usuario'}))
+    nombre = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class' : 'validate form-control','placeholder': ' Nombre'}))
+    apellido = forms.CharField(max_length=20, widget=forms.TextInput(attrs={'class' : 'validate form-control','placeholder': ' Apellido'}))
+    email = forms.EmailField(max_length=50 , widget=forms.TextInput(attrs={'class' : 'validate form-control','placeholder': ' Correo'}))
+    contraseña = forms.CharField(widget=forms.PasswordInput(attrs={'class' : 'validate form-control','placeholder ': ' Contraseña'}))
+    confirmarcontraseña = forms.password=forms.CharField(widget=forms.PasswordInput(attrs={'class' : 'validate form-control','placeholder': ' Confirme contraseña'}))
     
-class LoginForm(forms.Form):
-    username =forms.CharField(label='Usaurio')
-    password = password= forms.password=forms.CharField(max_length=30, label='Password',widget=forms.PasswordInput(attrs={'class': 'form-control','placeholder':'Ingrese su clave','required':''}))

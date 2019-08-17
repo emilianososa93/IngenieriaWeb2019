@@ -4,46 +4,32 @@
 <head>
     <title>Alquilalo YA</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-<body id="page-top" class="index">
-            <div class="collapse navbar-collapse" >
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="/nosotros/">Quienes somos</a>
-                    </li>
-                    <li>
-                        <a href="#">Secciones</a>
-                    </li>
-                    <li>
-                        <a href="#">Publicar</a>
-                    </li>                      
+<body>
+        <nav class="navbar navbar-dark bg-dark" >
+            <a class="navbar-brand page-scroll" href="/portada">AlquileresYA</a>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="/nosotros">Quienes somos</a></li>
+                    <li><a href="#" class="nav-link">Secciones</a></li>
+                    <li><a href="#" class="nav-link">Publicar</a></li > 
                 </ul>
-                <ul class="nav navbar-nav navbar-right">  
+                <ul class="nav navbar-nav navbar-right">
                     {% if request.user.is_superuser%}  
-                        <li>
-                            <a href="/admin/">Administrador</a>
-                        </li>
+                        <li><a href="/admin/" class="nav-link">Administrador</a></li>
                     {% endif %}
                     
-                    {% if request.user.is_authenticated %}
-                        <li>
-                            <a href="">{{request.user.username}}</a>
-                        </li>
-                        <li>
-                            <a href="/logout/">Salir</a>
-                        </li>
+                    {% if request.user.is_authenticated %}                        
+                        <li><a href="" class="nav-link">Usuario: {{request.user.username}}</a></li>
+                        <li><a href="/logout/" class="nav-link">Salir</a></li>
                     {% else %}
-                        <li>
-                            <a href="/login/">Ingresar</a>
-                        </li>
-                        <li>
-                            <a href="/registrar/">Registrarse</a>
-                        </li>
-
+                        <li><a href="/login/" class="nav-link">Ingresar</a></li>
+                        <li><a href="/registrar/" class="nav-link">Registrarse</a></li>
                     {% endif %}
                 </ul>
-            </div> 
-        <div class="container">
+            </div>
+        </nav>
         
         {% block content %}
         

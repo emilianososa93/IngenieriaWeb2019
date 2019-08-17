@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout as auth_logout
-from .forms import RegisterForm, LoginForm
+from django.contrib.auth import login as auth_login
+from .forms import RegisterForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.views.generic import FormView
@@ -77,17 +78,25 @@ def validacionmail(request):
     return render(request, 'validacionmail.html')
 
 def confirmar(request, activacion_token):
-    perfil_usuario = get_object_or_404(Perfil, activacion_token = activacion_token )    
-    user  = perfil_usuario.usuario
-    user.is_active  = True
-    user.save()
-    perfil_usuario.save()
-    return render(request, 'bienvenido.html')
+	#tratar de no arrojar 404 y tirar un mensaje de token invalido
+	try:
+	    perfil_usuario = get_object_or_404(Perfil, activacion_token = activacion_token )    
+	    user  = perfil_usuario.usuario
+	    user.is_active  = True
+	    user.save()
+	    auth_login(request,user)
+	    
+	except:
+		messages.error(request, "Token invalido o el mismo ya expiró")
+	return render(request, 'bienvenido.html')
 
 
 @login_required
 def nosotros(request):
     return render(request, 'nosotros.html')
+
+
+
 
 
 

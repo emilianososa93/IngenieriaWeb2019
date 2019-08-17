@@ -5,15 +5,16 @@
 </head>
 <body>
 	<div> 
-		<h1>BIENVENIDO</h1>
-		<li>
-            <a href="">{{request.user.username}}</a>
-        </li>
-        <li>
-            <a href="">{{request.user.nombre}}</a>
-        </li>
+		<h1>Bienvenido, {{request.user.username}} !!</h1>
 	</div>
-	<a href="/portada">Volver al login </a>
+	{% if messages %}
+		    <ul class="messages">
+		      {% for message in messages %}
+		        <li class="{{ message.tags }}">{{ message }}</li>
+		      {% endfor %}
+		    </ul>
+		{% endif %}
+		</div>
 </body>	
 
 {% endblock %} 
